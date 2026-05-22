@@ -49,127 +49,180 @@ export default function Search() {
     a.subjects.some(s => s.includes(value ?? ''))
   );
 
+  const filteredCertList = CertData.filter(c => c.name.includes(value ?? ''));
+
+  const [activeTab, setActiveTab] = useState<'aca' | 'cert'>('aca');
+
+  const levelFunc = (level: string) => {
+    switch (level) {
+      case '초급': return styles.low;
+      case '중급': return styles.mid;
+      case '고급': return styles.high;
+    }
+  };
 
   return (
     <div className={styles.search}>
-      <p className={styles.find}><span>"{value}"</span> 검색결과</p>
+      <p className={styles.find}><span>"{value}"</span> 검색결과 총 <span>{filteredAcaList.length + filteredCertList.length}</span>개</p>
       <div className={styles.acaOrCert}>
-        <p className={styles.active}>학원({filteredAcaList.length})</p>
-        <p>자격증(0)</p>
+        <p
+          className={activeTab === 'aca' ? styles.active : ''}
+          onClick={() => setActiveTab('aca')}
+        >
+          학원({filteredAcaList.length})
+        </p>
+        <p
+          className={activeTab === 'cert' ? styles.active : ''}
+          onClick={() => setActiveTab('cert')}
+        >
+          자격증({filteredCertList.length})
+        </p>
       </div>
 
-      <div className={styles.filters}>
-        {/* 지역 드롭다운 */}
-        <div className={styles.dropdown}>
-          {/* 열려있거나 선택된 값이 있으면 active 클래스로 파란 테두리 스타일 적용 */}
-          <div
-            className={`${styles.tab} ${isOpen('region') || selected.region ? styles.active : ''}`}
-            onClick={() => toggleDropdown('region')}
-          >
-            <p>{tabLabel('region', '지역')}</p>
-            {/* 열려있으면 화살표 회전 (active) + 파란 아이콘 */}
-            <p className={`${styles.imgWrap} ${isOpen('region') ? styles.active : ''}`}>
-              <img src={isOpen('region') || selected.region ? '/icons/ic-down(blue).svg' : '/icons/ic-down(black).svg'} alt="down아이콘" />
-            </p>
-          </div>
-          {/* 열려있으면 'open', 닫혀있으면 'closed' (css에서 closed는 display:none) */}
-          <div className={isOpen('region') ? styles.open : styles.closed}>
-            <div>
-              {REGIONS.map(r => (
-                <p
-                  key={r}
-                  className={selected.region === r ? styles.selected : ''} // 선택된 항목 파란 글씨
-                  onClick={() => selectOption('region', r)}
-                >{r}</p>
-              ))}
+      {activeTab === 'aca' && (
+        <div className={styles.filters}>
+          {/* 지역 드롭다운 */}
+          <div className={styles.dropdown}>
+            {/* 열려있거나 선택된 값이 있으면 active 클래스로 파란 테두리 스타일 적용 */}
+            <div
+              className={`${styles.tab} ${isOpen('region') || selected.region ? styles.active : ''}`}
+              onClick={() => toggleDropdown('region')}
+            >
+              <p>{tabLabel('region', '지역')}</p>
+              {/* 열려있으면 화살표 회전 (active) + 파란 아이콘 */}
+              <p className={`${styles.imgWrap} ${isOpen('region') ? styles.active : ''}`}>
+                <img src={isOpen('region') || selected.region ? '/icons/ic-down(blue).svg' : '/icons/ic-down(black).svg'} alt="down아이콘" />
+              </p>
             </div>
-          </div>
-        </div>
-
-        {/* 카테고리 드롭다운 */}
-        <div className={styles.dropdown}>
-          <div
-            className={`${styles.tab} ${isOpen('category') || selected.category ? styles.active : ''}`}
-            onClick={() => toggleDropdown('category')}
-          >
-            <p>{tabLabel('category', '카테고리')}</p>
-            <p className={`${styles.imgWrap} ${isOpen('category') ? styles.active : ''}`}>
-              <img src={isOpen('category') || selected.category ? '/icons/ic-down(blue).svg' : '/icons/ic-down(black).svg'} alt="down아이콘" />
-            </p>
-          </div>
-          <div className={isOpen('category') ? styles.open : styles.closed}>
-            <div>
-              {CATEGORIES.map(c => (
-                <p
-                  key={c}
-                  className={selected.category === c ? styles.selected : ''}
-                  onClick={() => selectOption('category', c)}
-                >{c}</p>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* 수강료 드롭다운 */}
-        <div className={styles.dropdown}>
-          <div
-            className={`${styles.tab} ${isOpen('fee') || selected.fee ? styles.active : ''}`}
-            onClick={() => toggleDropdown('fee')}
-          >
-            <p>{tabLabel('fee', '수강료')}</p>
-            <p className={`${styles.imgWrap} ${isOpen('fee') ? styles.active : ''}`}>
-              <img src={isOpen('fee') || selected.fee ? '/icons/ic-down(blue).svg' : '/icons/ic-down(black).svg'} alt="down아이콘" />
-            </p>
-          </div>
-          <div className={isOpen('fee') ? styles.open : styles.closed}>
-            <div>
-              {FEES.map(f => (
-                <p
-                  key={f}
-                  className={selected.fee === f ? styles.selected : ''}
-                  onClick={() => selectOption('fee', f)}
-                >{f}</p>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <section>
-        <h2 className={styles.title}>학원 <b>{filteredAcaList.length}</b>개</h2>
-
-        <div className={styles.objs}>
-          {filteredAcaList.map(obj => (
-            <div className={styles.acaObj} key={obj.id}>
-              <p className={styles.imgWrap}><img src={obj.image} alt="학원이미지" /></p>
-              <div className={styles.detail}>
-                <div className={styles.nameHeart}>
-                  <p className={styles.name}>{obj.name}</p>
-                  <div className={styles.heart}>
-                    <p className={styles.imgWrap}><img src='/icons/ic-heart-1.svg' alt="하트아이콘" /></p>
-                    <p>279</p>
-                  </div>
-                </div>
-
-                <div className={styles.tag}>
-                  <p className={styles.category}>{obj.category}</p>
-                  {obj.subjects.map((s, i) => (
-                    <p className={styles.subjects} key={i}>{s}</p>
-                  ))}
-                </div>
-
-                <div className={styles.mapFee}>
-                  <div className={styles.map}>
-                    <p><img src='/icons/ic-map.svg' alt="맵아이콘" /></p>
-                    <p className={styles.address}>{obj.address}</p>
-                  </div>
-                  <p className={styles.fee}>{obj.fee === 0 ? '무료' : `${Number(obj.fee).toLocaleString()}원`}</p>
-                </div>
+            {/* 열려있으면 'open', 닫혀있으면 'closed' (css에서 closed는 display:none) */}
+            <div className={isOpen('region') ? styles.open : styles.closed}>
+              <div>
+                {REGIONS.map(r => (
+                  <p
+                    key={r}
+                    className={selected.region === r ? styles.selected : ''}
+                    onClick={() => selectOption('region', r)}
+                  >{r}</p>
+                ))}
               </div>
             </div>
-          ))}
+          </div>
+
+          {/* 카테고리 드롭다운 */}
+          <div className={styles.dropdown}>
+            <div
+              className={`${styles.tab} ${isOpen('category') || selected.category ? styles.active : ''}`}
+              onClick={() => toggleDropdown('category')}
+            >
+              <p>{tabLabel('category', '카테고리')}</p>
+              <p className={`${styles.imgWrap} ${isOpen('category') ? styles.active : ''}`}>
+                <img src={isOpen('category') || selected.category ? '/icons/ic-down(blue).svg' : '/icons/ic-down(black).svg'} alt="down아이콘" />
+              </p>
+            </div>
+            <div className={isOpen('category') ? styles.open : styles.closed}>
+              <div>
+                {CATEGORIES.map(c => (
+                  <p
+                    key={c}
+                    className={selected.category === c ? styles.selected : ''}
+                    onClick={() => selectOption('category', c)}
+                  >{c}</p>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* 수강료 드롭다운 */}
+          <div className={styles.dropdown}>
+            <div
+              className={`${styles.tab} ${isOpen('fee') || selected.fee ? styles.active : ''}`}
+              onClick={() => toggleDropdown('fee')}
+            >
+              <p>{tabLabel('fee', '수강료')}</p>
+              <p className={`${styles.imgWrap} ${isOpen('fee') ? styles.active : ''}`}>
+                <img src={isOpen('fee') || selected.fee ? '/icons/ic-down(blue).svg' : '/icons/ic-down(black).svg'} alt="down아이콘" />
+              </p>
+            </div>
+            <div className={isOpen('fee') ? styles.open : styles.closed}>
+              <div>
+                {FEES.map(f => (
+                  <p
+                    key={f}
+                    className={selected.fee === f ? styles.selected : ''}
+                    onClick={() => selectOption('fee', f)}
+                  >{f}</p>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
-      </section>
+      )}
+
+      {activeTab === 'aca' && (
+        <section>
+          <h2 className={styles.title}>학원 <b>{filteredAcaList.length}</b>개</h2>
+          <div className={styles.objs}>
+            {filteredAcaList.map(obj => (
+              <div className={styles.acaObj} key={obj.id}>
+                <p className={styles.imgWrap}><img src={obj.image} alt="학원이미지" /></p>
+                <div className={styles.detail}>
+                  <div className={styles.nameHeart}>
+                    <p className={styles.name}>{obj.name}</p>
+                    <div className={styles.heart}>
+                      <p className={styles.imgWrap}><img src='/icons/ic-heart-1.svg' alt="하트아이콘" /></p>
+                      <p>279</p>
+                    </div>
+                  </div>
+                  <div className={styles.tag}>
+                    <p className={styles.category}>{obj.category}</p>
+                    {obj.subjects.map((s, i) => (
+                      <p className={styles.subjects} key={i}>{s}</p>
+                    ))}
+                  </div>
+                  <div className={styles.mapFee}>
+                    <div className={styles.map}>
+                      <p><img src='/icons/ic-map.svg' alt="맵아이콘" /></p>
+                      <p className={styles.address}>{obj.address}</p>
+                    </div>
+                    <p className={styles.fee}>{obj.fee === 0 ? '무료' : `${Number(obj.fee).toLocaleString()}원`}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {activeTab === 'cert' && (
+        <section>
+          <h2 className={styles.title}>자격증 <b>{filteredCertList.length}</b>개</h2>
+          <div className={styles.objs}>
+            {filteredCertList.map(obj => (
+              <div className={styles.certObj} key={obj.id}>
+                <p className={styles.imgWrap}><img src="/icons/ic-certificate(small).svg" alt="자격증아이콘" /></p>
+
+                <div className={styles.detail}>
+                  <div className={styles.nameHeart}>
+                    <p className={styles.name}>{obj.name}</p>
+                    <div className={styles.heart}>
+                      <p className={styles.imgWrap}><img src='/icons/ic-heart-1.svg' alt="하트아이콘" /></p>
+                      <p>0</p>
+                    </div>
+                  </div>
+
+                  <div className={styles.tag}>
+                    <p className={levelFunc(obj.level)}>{obj.level ? obj.level : ''}</p>
+                    <p><img src="/icons/ic-dot.svg" alt="점" /></p>
+                    <p className={styles.subjects}>합격률 {obj.passRate}%</p>
+                    <p><img src="/icons/ic-dot.svg" alt="점" /></p>
+                    <p className={styles.subjects}>{obj.nextExam}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   )
 }

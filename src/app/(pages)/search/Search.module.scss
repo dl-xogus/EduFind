@@ -140,6 +140,87 @@
             gap: 20px;
         }
 
+        .certObj {
+            box-shadow: 0 3px 4px 0 rgba($color: #000000, $alpha: 0.25);
+            border-radius: 15px;
+            background-color: white;
+            padding: 15px;
+            display: flex;
+            gap: 15px;
+
+            >.imgWrap {
+                background-color: #B5D4F4;
+                border-radius: 10px;
+                width: 60px;
+                height: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+            }
+
+            .detail {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+
+                .nameHeart {
+                    display: flex;
+                    justify-content: space-between;
+
+                    .name {
+                        font-size: 20px;
+                        font-weight: 500;
+                        cursor: pointer;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+
+                    .heart {
+                        display: flex;
+                        align-items: center;
+                        gap: 5px;
+                        cursor: pointer;
+                    }
+                }
+
+                .tag {
+                    display: flex;
+                    align-items: center;
+
+                    .low {
+                        background-color: #eaf3de;
+                        border-radius: 999px;
+                        padding: 5px 10px;
+                        color: #3b6d11;
+                        font-size: 14px;
+                        font-weight: 500;
+                    }
+
+                    .mid {
+                        background-color: #FAEEDA;
+                        border-radius: 999px;
+                        padding: 5px 10px;
+                        color: #854F0B;
+                        font-size: 14px;
+                        font-weight: 500;
+                    }
+
+                    .high {
+                        background-color: #FAE7E7;
+                        border-radius: 999px;
+                        padding: 5px 10px;
+                        color: #B21D1D;
+                        font-size: 14px;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+
         .acaObj {
             box-shadow: 0 3px 4px 0 rgba($color: #000000, $alpha: 0.25);
             border-radius: 15px;
@@ -158,6 +239,7 @@
                 align-items: center;
                 justify-content: center;
                 overflow: hidden;
+                cursor: pointer;
 
                 img {
                     width: 100%;
@@ -210,7 +292,7 @@
                         font-size: 14px;
                         font-weight: 500;
                     }
-                    
+
                     .subject {
                         background-color: #F8F9FA;
                         padding: 5px 10px;

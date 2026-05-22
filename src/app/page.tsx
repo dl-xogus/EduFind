@@ -129,7 +129,7 @@ export default function Home() {
                   <p className={styles.name}>{obj.name}</p>
                   <div className={styles.text}>
                     <p className={styles.t}>난이도</p>
-                    <p className={levelFunc(obj.level)}>{obj.level ? obj.level : '정보 없음'}</p>
+                    <p className={levelFunc(obj.level)}>{obj.level ? obj.level : ''}</p>
                   </div>
                   <div className={styles.text}>
                     <p className={styles.t}>합격률</p>
