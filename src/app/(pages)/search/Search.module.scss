@@ -1,0 +1,245 @@
+.search {
+    width: 1140px;
+    padding: 75px 20px 0 20px;
+    margin: 0 auto;
+
+    .find {
+        text-align: center;
+        font-size: 20px;
+        padding: 20px 0;
+
+        >span {
+            color: #0075E9;
+            font-weight: 500;
+        }
+    }
+
+    .acaOrCert {
+        display: flex;
+        border-bottom: 1px solid #DEE2E6;
+
+        >p {
+            padding: 10px 20px;
+            font-weight: 500;
+
+            &.active {
+                color: #0075E9;
+                border-bottom: 2px solid #0075E9;
+            }
+        }
+    }
+
+    .filters {
+        display: flex;
+        gap: 10px;
+        padding-top: 20px;
+
+        .dropdown {
+
+            .tab {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                background-color: #F8F9FA;
+                border: 1px solid #F8F9FA;
+                border-radius: 999px;
+                padding: 8px 15px;
+                font-weight: 500;
+
+                &.active {
+                    background-color: white;
+                    border: 1px solid #0075E9;
+                    color: #0075E9;
+                    position: relative;
+                }
+
+                .imgWrap {
+                    transition: 0.3s;
+
+                    &.active {
+                        transform: rotate3d(1, 0, 0, 180deg);
+                    }
+                }
+            }
+
+            .closed {
+                display: none;
+            }
+
+            .open {
+                position: absolute;
+                z-index: 5;
+                margin-top: 5px;
+                padding: 0 2px 0 0;
+                background-color: white;
+                border: 1px solid #DEE2E6;
+                border-radius: 10px;
+                overflow: hidden;
+
+                >div {
+                    display: flex;
+                    flex-direction: column;
+
+                    width: 131px;
+                    height: 116px;
+                    overflow-y: auto;
+
+                    &::-webkit-scrollbar {
+                        width: 10px;
+                    }
+
+                    &::-webkit-scrollbar-track {
+                        background: transparent;
+                    }
+
+                    &::-webkit-scrollbar-thumb {
+                        background: #888888;
+                        border-radius: 999px;
+                        border: 2px solid transparent;
+                        background-clip: padding-box;
+
+
+                        &:hover {
+                            background: #0075E9;
+                            border: 2px solid transparent;
+                            background-clip: padding-box;
+                        }
+                    }
+
+                    >p {
+                        padding: 5px 0 5px 15px;
+
+                        &:hover {
+                            background-color: #eeeeee;
+                            border-radius: 5px;
+                        }
+
+                        &.selected {
+                            color: #0075E9;
+                            font-weight: 500;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    >section {
+        .title {
+            font-weight: 500;
+            padding: 20px 0;
+
+            >b {
+                color: #0075E9;
+            }
+        }
+
+        .objs {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .acaObj {
+            box-shadow: 0 3px 4px 0 rgba($color: #000000, $alpha: 0.25);
+            border-radius: 15px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+
+            >.imgWrap {
+                width: 160px;
+                height: 105px;
+                background-color: #eeeeee;
+                border-radius: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            .detail {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+
+                .nameHeart {
+                    display: flex;
+                    justify-content: space-between;
+
+                    .name {
+                        font-size: 20px;
+                        font-weight: 500;
+                        width: fit-content;
+                        cursor: pointer;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+
+                    .heart {
+                        display: flex;
+                        gap: 5px;
+                        align-items: center;
+
+                        .imgWrap {
+                            cursor: pointer;
+                        }
+                    }
+                }
+
+                .tag {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+
+                    .category {
+                        background-color: #E6F1FB;
+                        padding: 5px 10px;
+                        border-radius: 999px;
+                        font-size: 14px;
+                        font-weight: 500;
+                    }
+                    
+                    .subject {
+                        background-color: #F8F9FA;
+                        padding: 5px 10px;
+                        border-radius: 999px;
+                        font-size: 14px;
+                        font-weight: 500;
+                    }
+                }
+
+                .mapFee {
+                    display: flex;
+                    justify-content: space-between;
+
+                    .map {
+                        display: flex;
+                        align-items: center;
+                        gap: 5px;
+
+                        .address {
+                            color: #636363;
+                        }
+                    }
+
+                    .fee {
+                        font-size: 20px;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+    }
+}

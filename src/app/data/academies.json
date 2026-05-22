@@ -1,0 +1,556 @@
+[
+  {
+    "id": 1,
+    "name": "강남 IT 아카데미",
+    "region": "서울 강남구",
+    "address": "서울 강남구 테헤란로 123",
+    "category": "IT",
+    "subjects": [
+      "정보처리기사",
+      "SQLD",
+      "파이썬"
+    ],
+    "fee": 350000,
+    "description": "IT 자격증 전문 학원으로 정보처리기사 합격률 85% 이상을 자랑합니다. 현직 개발자 강사진이 직접 강의합니다.",
+    "tags": [
+      "자격증",
+      "IT",
+      "현직강사"
+    ],
+    "certIds": [
+      1,
+      2,
+      5
+    ],
+    "image": "https://placehold.co/400x200/E6F1FB/185FA5?text=강남IT아카데미",
+    "openTime": "09:00 ~ 22:00",
+    "phone": "02-1234-5678",
+    "wishCount": 279
+  },
+  {
+    "id": 2,
+    "name": "종로 어학원",
+    "region": "서울 종로구",
+    "address": "서울 종로구 종로 45",
+    "category": "어학",
+    "subjects": [
+      "토익",
+      "토플",
+      "오픽",
+      "영어회화"
+    ],
+    "fee": 280000,
+    "description": "영어 전문 어학원. 토익 평균 점수 향상 150점 이상을 보장합니다. 소규모 반 운영으로 개인 맞춤 학습이 가능합니다.",
+    "tags": [
+      "어학",
+      "토익",
+      "소규모"
+    ],
+    "certIds": [
+      6,
+      7
+    ],
+    "image": "https://placehold.co/400x200/E1F5EE/0F6E56?text=종로어학원",
+    "openTime": "08:00 ~ 21:00",
+    "phone": "02-2345-6789",
+    "wishCount": 264
+  },
+  {
+    "id": 3,
+    "name": "서초 코딩 스쿨",
+    "region": "서울 서초구",
+    "address": "서울 서초구 서초대로 88",
+    "category": "IT",
+    "subjects": [
+      "웹개발",
+      "React",
+      "Vue",
+      "Node.js"
+    ],
+    "fee": 500000,
+    "description": "실무 중심 웹개발 부트캠프. 프로젝트 기반 학습으로 수료 후 취업 연계까지 지원합니다.",
+    "tags": [
+      "부트캠프",
+      "취업연계",
+      "실무"
+    ],
+    "certIds": [
+      1,
+      3
+    ],
+    "image": "https://placehold.co/400x200/FAEEDA/BA7517?text=서초코딩스쿨",
+    "openTime": "10:00 ~ 21:00",
+    "phone": "02-3456-7890",
+    "wishCount": 74
+  },
+  {
+    "id": 4,
+    "name": "마포 자격증 학원",
+    "region": "서울 마포구",
+    "address": "서울 마포구 홍대입구로 56",
+    "category": "자격증",
+    "subjects": [
+      "전기기사",
+      "산업안전기사",
+      "소방설비기사"
+    ],
+    "fee": 220000,
+    "description": "기술 자격증 전문 학원. 전기·소방·안전 분야 합격률 업계 최고 수준. 불합격 시 재수강 무료.",
+    "tags": [
+      "기술자격증",
+      "재수강무료",
+      "합격보장"
+    ],
+    "certIds": [
+      8,
+      9,
+      10
+    ],
+    "image": "https://placehold.co/400x200/FAECE7/993C1D?text=마포자격증학원",
+    "openTime": "09:00 ~ 20:00",
+    "phone": "02-4567-8901",
+    "wishCount": 68
+  },
+  {
+    "id": 5,
+    "name": "판교 AI 스쿨",
+    "region": "경기 성남시",
+    "address": "경기 성남시 분당구 판교로 100",
+    "category": "IT",
+    "subjects": [
+      "머신러닝",
+      "딥러닝",
+      "데이터분석",
+      "파이썬"
+    ],
+    "fee": 650000,
+    "description": "AI·데이터 사이언스 전문 교육기관. 카카오·네이버 출신 강사가 직접 강의하는 실전 AI 교육.",
+    "tags": [
+      "AI",
+      "데이터분석",
+      "현직강사"
+    ],
+    "certIds": [
+      4,
+      5
+    ],
+    "image": "https://placehold.co/400x200/EEEDFE/534AB7?text=판교AI스쿨",
+    "openTime": "09:00 ~ 21:00",
+    "phone": "031-1234-5678",
+    "wishCount": 252
+  },
+  {
+    "id": 6,
+    "name": "부산 IT 교육센터",
+    "region": "부산 해운대구",
+    "address": "부산 해운대구 센텀중앙로 55",
+    "category": "IT",
+    "subjects": [
+      "정보처리기사",
+      "네트워크관리사",
+      "리눅스마스터"
+    ],
+    "fee": 300000,
+    "description": "부산·경남 최대 IT 교육센터. 지역 기업과 연계한 취업 지원 프로그램 운영.",
+    "tags": [
+      "IT",
+      "취업연계",
+      "지역"
+    ],
+    "certIds": [
+      1,
+      11,
+      12
+    ],
+    "image": "https://placehold.co/400x200/E6F1FB/185FA5?text=부산IT센터",
+    "openTime": "09:00 ~ 20:00",
+    "phone": "051-1234-5678",
+    "wishCount": 225
+  },
+  {
+    "id": 7,
+    "name": "대구 금융 아카데미",
+    "region": "대구 중구",
+    "address": "대구 중구 동성로 33",
+    "category": "금융",
+    "subjects": [
+      "증권투자권유대행인",
+      "펀드투자권유대행인",
+      "재무설계사"
+    ],
+    "fee": 180000,
+    "description": "금융 자격증 전문 교육기관. 은행·보험·증권사 취업 준비생을 위한 맞춤형 커리큘럼.",
+    "tags": [
+      "금융",
+      "자격증",
+      "취업준비"
+    ],
+    "certIds": [
+      13,
+      14
+    ],
+    "image": "https://placehold.co/400x200/EAF3DE/3B6D11?text=대구금융아카데미",
+    "openTime": "10:00 ~ 19:00",
+    "phone": "053-1234-5678",
+    "wishCount": 275
+  },
+  {
+    "id": 8,
+    "name": "인천 디자인 스쿨",
+    "region": "인천 남동구",
+    "address": "인천 남동구 구월로 77",
+    "category": "디자인",
+    "subjects": [
+      "포토샵",
+      "일러스트레이터",
+      "UI/UX",
+      "영상편집"
+    ],
+    "fee": 380000,
+    "description": "실무 포트폴리오 중심 디자인 교육. 수료 후 포트폴리오 완성까지 1:1 멘토링 제공.",
+    "tags": [
+      "디자인",
+      "포트폴리오",
+      "멘토링"
+    ],
+    "certIds": [
+      15
+    ],
+    "image": "https://placehold.co/400x200/FBEAF0/993556?text=인천디자인스쿨",
+    "openTime": "10:00 ~ 21:00",
+    "phone": "032-1234-5678",
+    "wishCount": 61
+  },
+  {
+    "id": 9,
+    "name": "강북 어학 센터",
+    "region": "서울 강북구",
+    "address": "서울 강북구 미아로 22",
+    "category": "어학",
+    "subjects": [
+      "일본어",
+      "중국어",
+      "토익",
+      "JLPT"
+    ],
+    "fee": 200000,
+    "description": "외국어 전문 학원. 일본어·중국어 원어민 강사 보유. 소규모 회화 반 운영.",
+    "tags": [
+      "어학",
+      "원어민",
+      "일본어",
+      "중국어"
+    ],
+    "certIds": [
+      6,
+      16
+    ],
+    "image": "https://placehold.co/400x200/E1F5EE/0F6E56?text=강북어학센터",
+    "openTime": "09:00 ~ 21:00",
+    "phone": "02-5678-9012",
+    "wishCount": 252
+  },
+  {
+    "id": 10,
+    "name": "수원 국가기술 학원",
+    "region": "경기 수원시",
+    "address": "경기 수원시 영통구 광교로 99",
+    "category": "기술",
+    "subjects": [
+      "전기기사",
+      "건축기사",
+      "토목기사"
+    ],
+    "fee": 250000,
+    "description": "국가기술자격증 전문 학원. 10년 이상 경력 강사진으로 구성. 합격률 78% 달성.",
+    "tags": [
+      "기술자격증",
+      "국가자격증",
+      "합격률높음"
+    ],
+    "certIds": [
+      8,
+      17,
+      18
+    ],
+    "image": "https://placehold.co/400x200/FAEEDA/BA7517?text=수원국가기술학원",
+    "openTime": "09:00 ~ 20:00",
+    "phone": "031-9876-5432",
+    "wishCount": 176
+  },
+  {
+    "id": 11,
+    "name": "홍대 크리에이티브 스쿨",
+    "region": "서울 마포구",
+    "address": "서울 마포구 어울마당로 15",
+    "category": "디자인",
+    "subjects": [
+      "웹디자인",
+      "영상제작",
+      "유튜브크리에이터",
+      "포토샵"
+    ],
+    "fee": 320000,
+    "description": "크리에이티브 콘텐츠 제작 전문 교육기관. 유튜버·웹디자이너 등 1인 미디어 창업 지원.",
+    "tags": [
+      "크리에이터",
+      "영상",
+      "1인미디어"
+    ],
+    "certIds": [
+      15
+    ],
+    "image": "https://placehold.co/400x200/FBEAF0/993556?text=홍대크리에이티브",
+    "openTime": "11:00 ~ 22:00",
+    "phone": "02-6789-0123",
+    "wishCount": 160
+  },
+  {
+    "id": 12,
+    "name": "광주 SW 교육원",
+    "region": "광주 서구",
+    "address": "광주 서구 상무대로 111",
+    "category": "IT",
+    "subjects": [
+      "자바",
+      "스프링",
+      "데이터베이스",
+      "정보처리기사"
+    ],
+    "fee": 280000,
+    "description": "전남·광주 지역 최대 SW 교육기관. 국비지원 과정 운영으로 저렴하게 수강 가능.",
+    "tags": [
+      "국비지원",
+      "IT",
+      "자바"
+    ],
+    "certIds": [
+      1,
+      2
+    ],
+    "image": "https://placehold.co/400x200/EEEDFE/534AB7?text=광주SW교육원",
+    "openTime": "09:00 ~ 20:00",
+    "phone": "062-1234-5678",
+    "wishCount": 148
+  },
+  {
+    "id": 13,
+    "name": "대전 회계 학원",
+    "region": "대전 유성구",
+    "address": "대전 유성구 대학로 44",
+    "category": "금융",
+    "subjects": [
+      "전산회계",
+      "세무사",
+      "공인회계사(CPA)",
+      "FAT"
+    ],
+    "fee": 230000,
+    "description": "회계·세무 자격증 전문 학원. 전산회계 1·2급 합격률 92%. 세무사 시험 집중 대비반 운영.",
+    "tags": [
+      "회계",
+      "세무",
+      "자격증"
+    ],
+    "certIds": [
+      19,
+      20
+    ],
+    "image": "https://placehold.co/400x200/EAF3DE/3B6D11?text=대전회계학원",
+    "openTime": "09:00 ~ 21:00",
+    "phone": "042-1234-5678",
+    "wishCount": 131
+  },
+  {
+    "id": 14,
+    "name": "신촌 공무원 학원",
+    "region": "서울 서대문구",
+    "address": "서울 서대문구 연세로 8",
+    "category": "공무원",
+    "subjects": [
+      "9급공무원",
+      "7급공무원",
+      "경찰공무원",
+      "소방공무원"
+    ],
+    "fee": 400000,
+    "description": "공무원 시험 전문 학원. 합격생 배출 1,200명 이상. 스터디룸 24시간 무료 제공.",
+    "tags": [
+      "공무원",
+      "스터디룸",
+      "24시간"
+    ],
+    "certIds": [],
+    "image": "https://placehold.co/400x200/FAECE7/993C1D?text=신촌공무원학원",
+    "openTime": "00:00 ~ 24:00",
+    "phone": "02-7890-1234",
+    "wishCount": 131
+  },
+  {
+    "id": 15,
+    "name": "잠실 데이터 분석 학원",
+    "region": "서울 송파구",
+    "address": "서울 송파구 올림픽로 200",
+    "category": "IT",
+    "subjects": [
+      "빅데이터분석기사",
+      "SQL",
+      "파이썬",
+      "R"
+    ],
+    "fee": 420000,
+    "description": "데이터 분석 전문 교육기관. 빅데이터분석기사 합격률 81%. 실제 데이터셋으로 프로젝트 실습.",
+    "tags": [
+      "데이터분석",
+      "빅데이터",
+      "실습중심"
+    ],
+    "certIds": [
+      4,
+      2
+    ],
+    "image": "https://placehold.co/400x200/E6F1FB/185FA5?text=잠실데이터학원",
+    "openTime": "09:00 ~ 21:00",
+    "phone": "02-8901-2345",
+    "wishCount": 190
+  },
+  {
+    "id": 16,
+    "name": "천안 국비 IT 센터",
+    "region": "충남 천안시",
+    "address": "충남 천안시 서북구 불당로 55",
+    "category": "IT",
+    "subjects": [
+      "정보처리기사",
+      "웹개발",
+      "앱개발"
+    ],
+    "fee": 0,
+    "description": "국비지원 100% 무료 IT 교육 센터. 고용노동부 인증 훈련기관. 수료 후 취업 알선 서비스 제공.",
+    "tags": [
+      "국비지원",
+      "무료",
+      "취업알선"
+    ],
+    "certIds": [
+      1,
+      3
+    ],
+    "image": "https://placehold.co/400x200/EAF3DE/3B6D11?text=천안국비IT센터",
+    "openTime": "09:00 ~ 18:00",
+    "phone": "041-1234-5678",
+    "wishCount": 43
+  },
+  {
+    "id": 17,
+    "name": "구로 스마트 러닝",
+    "region": "서울 구로구",
+    "address": "서울 구로구 디지털로 300",
+    "category": "IT",
+    "subjects": [
+      "AWS",
+      "클라우드",
+      "정보보안기사",
+      "네트워크"
+    ],
+    "fee": 480000,
+    "description": "클라우드·보안 전문 교육기관. AWS 공인 트레이닝 파트너. 정보보안기사 합격률 74%.",
+    "tags": [
+      "클라우드",
+      "보안",
+      "AWS"
+    ],
+    "certIds": [
+      11,
+      12
+    ],
+    "image": "https://placehold.co/400x200/EEEDFE/534AB7?text=구로스마트러닝",
+    "openTime": "09:00 ~ 21:00",
+    "phone": "02-9012-3456",
+    "wishCount": 235
+  },
+  {
+    "id": 18,
+    "name": "울산 산업안전 학원",
+    "region": "울산 남구",
+    "address": "울산 남구 삼산로 66",
+    "category": "기술",
+    "subjects": [
+      "산업안전기사",
+      "산업위생관리기사",
+      "소방설비기사"
+    ],
+    "fee": 200000,
+    "description": "산업안전 자격증 전문 학원. 제조업·건설업 종사자를 위한 맞춤형 교육. 주말반 운영.",
+    "tags": [
+      "산업안전",
+      "주말반",
+      "기술자격증"
+    ],
+    "certIds": [
+      9,
+      10
+    ],
+    "image": "https://placehold.co/400x200/FAEEDA/BA7517?text=울산산업안전학원",
+    "openTime": "09:00 ~ 20:00",
+    "phone": "052-1234-5678",
+    "wishCount": 308
+  },
+  {
+    "id": 19,
+    "name": "성수 UX 아카데미",
+    "region": "서울 성동구",
+    "address": "서울 성동구 뚝섬로 18",
+    "category": "디자인",
+    "subjects": [
+      "UI/UX",
+      "피그마",
+      "프로토타이핑",
+      "사용자조사"
+    ],
+    "fee": 550000,
+    "description": "UX 디자인 전문 교육기관. 현직 UX 리드 강사 직강. 수료 후 포트폴리오 리뷰 및 채용 연계.",
+    "tags": [
+      "UX",
+      "피그마",
+      "채용연계",
+      "현직강사"
+    ],
+    "certIds": [
+      15
+    ],
+    "image": "https://placehold.co/400x200/FBEAF0/993556?text=성수UX아카데미",
+    "openTime": "10:00 ~ 21:00",
+    "phone": "02-0123-4567",
+    "wishCount": 154
+  },
+  {
+    "id": 20,
+    "name": "분당 영어 전문 학원",
+    "region": "경기 성남시",
+    "address": "경기 성남시 분당구 서현로 44",
+    "category": "어학",
+    "subjects": [
+      "토익",
+      "오픽",
+      "영어회화",
+      "비즈니스영어"
+    ],
+    "fee": 260000,
+    "description": "직장인 영어 특화 학원. 오전·저녁반 모두 운영. 오픽 AL 달성률 업계 최고 수준.",
+    "tags": [
+      "직장인",
+      "오픽",
+      "토익",
+      "비즈니스영어"
+    ],
+    "certIds": [
+      6,
+      7
+    ],
+    "image": "https://placehold.co/400x200/E1F5EE/0F6E56?text=분당영어학원",
+    "openTime": "07:00 ~ 22:00",
+    "phone": "031-2345-6789",
+    "wishCount": 298
+  }
+]

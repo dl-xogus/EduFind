@@ -1,0 +1,1 @@
+export type DropdownKey = 'region' | 'category' | 'fee';

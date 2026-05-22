@@ -1,0 +1,174 @@
+* {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+img {
+  vertical-align: middle;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+h1,
+h2,
+h3,
+p,
+figure {
+  margin: 0;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+header {
+  border-bottom: 1px solid #DEE2E6;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 9999;
+
+  >.inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 40px;
+  }
+
+  .logo {
+    font-family: 'OkDanDan';
+    color: #0075E9;
+    font-size: 30px;
+    cursor: pointer;
+  }
+
+  form {
+    display: flex;
+    border: 1px solid #DEE2E6;
+    border-radius: 999px;
+    padding: 10px 10px 10px 30px;
+    width: 640px;
+
+    &:focus-within {
+      border: 1px solid #0075E9;
+    }
+
+    input {
+      width: 100%;
+      border: none;
+      font-size: 16px;
+
+      &:focus {
+        outline: none;
+        border: none;
+      }
+
+      &::placeholder {
+        color: #2E71AB;
+      }
+    }
+
+    .searchBtn {
+      border: none;
+      width: 35px;
+      aspect-ratio: 1/1;
+      border-radius: 999px;
+      background-color: #0075E9;
+      cursor: pointer;
+    }
+  }
+
+  .loginBtn {
+    border: none;
+    border-radius: 999px;
+    padding: 10px 15px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #eeeeee;
+    }
+  }
+}
+
+footer {
+  height: 80px;
+  border-top: 1px solid #DEE2E6;
+  padding: 40px;
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .logo {
+    font-family: 'OkDanDan';
+    color: #0075E9;
+    font-size: 30px;
+    cursor: pointer;
+  }
+
+  >div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: end;
+    
+    >p {
+      color: #5d5d5d;
+      font-size: 14px;
+
+      &:nth-of-type(2) {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+body {
+  margin: 0;
+  font-family: 'Pretendard', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('../../public/fonts/Pretendard-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('../../public/fonts/Pretendard-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MyFont';
+  src: url('../../public/fonts/Pretendard-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'OkDanDan';
+  src: url('../../public/fonts/OkDanDan-Bold.ttf') format('truetype');
+  font-style: normal;
+}
