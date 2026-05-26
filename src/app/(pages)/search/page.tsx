@@ -2,17 +2,18 @@
 
 import { useState } from 'react'
 import { useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { DropdownKey } from '@/app/types/Search'
 
 import AcaData from '@/app/data/academies.json'
 import CertData from '@/app/data/certs.json'
 import styles from './Search.module.scss'
 
-const REGIONS = ['서울', '경기', '부산', '대구', '인천'];
-const CATEGORIES = ['IT', '어학', '금융', '기술', '디자인', '공무원'];
-const FEES = ['무료', '20만원 이하', '20 ~ 40만원', '40만원 이상'];
-
 export default function Search() {
+  const REGIONS = ['서울', '경기', '부산', '대구', '인천'];
+  const CATEGORIES = ['IT', '어학', '금융', '기술', '디자인', '공무원'];
+  const FEES = ['무료', '20만원 이하', '20 ~ 40만원', '40만원 이상'];
+
   // 현재 열려있는 드롭다운 key ('region' | 'category' | 'fee' | null)
   const [openDropdown, setOpenDropdown] = useState<DropdownKey | null>(null);
 
@@ -44,10 +45,22 @@ export default function Search() {
   const searchParams = useSearchParams();
   const value: string | null = searchParams.get('value');
 
-  const filteredAcaList = AcaData.filter(a =>
-    a.name.includes(value ?? '') ||
-    a.subjects.some(s => s.includes(value ?? ''))
-  );
+  const filteredAcaList = AcaData.filter(a => {
+    const query = value ?? '';
+    const matchesSearch = a.name.includes(query) || a.subjects.some(s => s.includes(query));
+    const matchesRegion = !selected.region || a.region.includes(selected.region);
+    const matchesCategory = !selected.category || a.category === selected.category;
+    const matchesFee = !selected.fee || (
+      selected.fee === '무료' ? a.fee === 0 :
+        selected.fee === '20만원 이하' ? a.fee > 0 && a.fee <= 200000 :
+          selected.fee === '20 ~ 40만원' ? a.fee > 200000 && a.fee <= 400000 :
+            selected.fee === '40만원 이상' ? a.fee > 400000 :
+              true
+    );
+    return matchesSearch && matchesRegion && matchesCategory && matchesFee;
+  });
+
+
 
   const filteredCertList = CertData.filter(c => c.name.includes(value ?? ''));
 
@@ -59,6 +72,20 @@ export default function Search() {
       case '중급': return styles.mid;
       case '고급': return styles.high;
     }
+  };
+
+  const router = useRouter();
+
+  const handleAcaClick = (e: React.MouseEvent, id: number) => {
+    e.preventDefault();
+    if (!id) return;
+    router.push(`/academies?id=${encodeURIComponent(id)}`);
+  };
+
+  const handleCertClick = (e: React.MouseEvent, id: number) => {
+    e.preventDefault();
+    if (!id) return;
+    router.push(`/certs?id=${encodeURIComponent(id)}`);
   };
 
   return (
@@ -164,10 +191,21 @@ export default function Search() {
           <div className={styles.objs}>
             {filteredAcaList.map(obj => (
               <div className={styles.acaObj} key={obj.id}>
-                <p className={styles.imgWrap}><img src={obj.image} alt="학원이미지" /></p>
+                <p
+                  className={styles.imgWrap}
+                  onClick={e => { handleAcaClick(e, obj.id) }}
+                >
+                  <img src={obj.image} alt="학원이미지" />
+                </p>
+
                 <div className={styles.detail}>
                   <div className={styles.nameHeart}>
-                    <p className={styles.name}>{obj.name}</p>
+                    <p
+                      className={styles.name}
+                      onClick={e => { handleAcaClick(e, obj.id) }}
+                    >
+                      {obj.name}
+                    </p>
                     <div className={styles.heart}>
                       <p className={styles.imgWrap}><img src='/icons/ic-heart-1.svg' alt="하트아이콘" /></p>
                       <p>279</p>
@@ -199,11 +237,21 @@ export default function Search() {
           <div className={styles.objs}>
             {filteredCertList.map(obj => (
               <div className={styles.certObj} key={obj.id}>
-                <p className={styles.imgWrap}><img src="/icons/ic-certificate(small).svg" alt="자격증아이콘" /></p>
+                <p
+                  className={styles.imgWrap}
+                  onClick={e => handleCertClick(e, obj.id)}
+                >
+                  <img src="/icons/ic-certificate(small).svg" alt="자격증아이콘" />
+                </p>
 
                 <div className={styles.detail}>
                   <div className={styles.nameHeart}>
-                    <p className={styles.name}>{obj.name}</p>
+                    <p
+                      className={styles.name}
+                      onClick={e => handleCertClick(e, obj.id)}
+                    >
+                      {obj.name}
+                    </p>
                     <div className={styles.heart}>
                       <p className={styles.imgWrap}><img src='/icons/ic-heart-1.svg' alt="하트아이콘" /></p>
                       <p>0</p>

@@ -1,7 +1,9 @@
-import React from 'react'
+import styles from './certs.module.scss'
 
 export default function Certs() {
   return (
-    <div>Certs</div>
+    <div className={styles.certs}>
+      Certs
+    </div>
   )
 }

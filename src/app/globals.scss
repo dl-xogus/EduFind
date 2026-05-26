@@ -32,7 +32,7 @@ table {
 }
 
 header {
-  border-bottom: 1px solid #DEE2E6;
+  // border-bottom: 1px solid #DEE2E6;
   position: fixed;
   top: 0;
   width: 100%;
@@ -139,6 +139,13 @@ body {
   font-family: 'Pretendard', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  >main {
+    flex: 1;
+  }
 }
 
 code {
