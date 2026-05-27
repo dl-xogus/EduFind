@@ -98,7 +98,7 @@
         &.last {
             border: none;
         }
-        
+
         >h3 {
             font-size: 20px;
             font-weight: 500;
@@ -140,6 +140,7 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    cursor: pointer;
                 }
 
                 .inner {
@@ -149,6 +150,11 @@
                         padding-bottom: 15px;
                         font-size: 20px;
                         font-weight: 500;
+                        cursor: pointer;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
                     }
 
                     .text {
@@ -184,13 +190,23 @@
                 }
 
                 .btn {
-                    width: 17px;
-                    height: 17px;
+                    width: 30px;
+                    height: 30px;
+                    aspect-ratio: 1 / 1;
+                    border-radius: 999px;
                     display: flex;
                     align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: #eeeeee;
+                    }
 
                     img {
-                        width: 100%;
+                        width: 17px;
+                        height: 17px;
+                        aspect-ratio: 1 / 1;
                     }
                 }
             }

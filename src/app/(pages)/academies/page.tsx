@@ -1,6 +1,6 @@
 'use client'
 
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import AcaData from '@/app/data/academies.json'
 import CertData from '@/app/data/certs.json'
 import styles from './academies.module.scss'
@@ -18,6 +18,14 @@ export default function Academies() {
       case '중급': return styles.mid;
       case '고급': return styles.high;
     }
+  };
+
+  const router = useRouter();
+
+  const handleCertClick = (e: React.MouseEvent, id: number) => {
+    e.preventDefault();
+    if (!id) return;
+    router.push(`/certs?id=${encodeURIComponent(id)}`);
   };
 
   if (!acaDetail) return (
@@ -44,7 +52,7 @@ export default function Academies() {
           </div>
         </div>
       </div>
-      
+
       <div className={styles.info}>
         <div className={styles.item}>
           <div className={styles.top}>
@@ -75,7 +83,7 @@ export default function Academies() {
             <p className={styles.imgWrap}><img src="/icons/ic-coin-1.svg" alt="맵아이콘" /></p>
             <p className={styles.text}>수강료</p>
           </div>
-          <p className={styles.detail}>{Number(acaDetail.fee).toLocaleString()}원</p>
+          <p className={styles.detail}>{acaDetail.fee == 0 ? '무료' : `${Number(acaDetail.fee).toLocaleString()}원`}</p>
         </div>
       </div>
 
@@ -100,7 +108,12 @@ export default function Academies() {
             <div className={styles.cert} key={cer.id}>
               <p className={styles.imgWrap}><img src="/icons/ic-certificate(small).svg" alt="자격증아이콘" /></p>
               <div className={styles.inner}>
-                <p className={styles.name}>{cer.name}</p>
+                <p
+                  className={styles.name}
+                  onClick={e => handleCertClick(e, cer.id)}
+                >
+                  {cer.name}
+                </p>
                 <div className={styles.text}>
                   <p className={levelFunc(cer.level)}>{cer.level}</p>
                   <p><img src="/icons/ic-dot.svg" alt="dot" /></p>

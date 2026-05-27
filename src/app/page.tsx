@@ -7,6 +7,7 @@ import certs from '@/app/data/certs.json'
 import { Academy, Cert } from '@/app/types/Main'
 
 import styles from "./page.module.scss";
+import { useRouter } from 'next/navigation'
 
 const TABS = [
   { label: '전체', ic_black: '/icons/ic-all.svg', ic_white: '/icons/ic-all(white).svg' },
@@ -35,6 +36,20 @@ export default function Home() {
       case '중급': return 'mid';
       case '고급': return 'high';
     }
+  };
+
+  const router = useRouter();
+
+  const handleAcaClick = (e: React.MouseEvent, id: number) => {
+    e.preventDefault();
+    if (!id) return;
+    router.push(`/academies?id=${encodeURIComponent(id)}`);
+  };
+
+  const handleCertClick = (e: React.MouseEvent, id: number) => {
+    e.preventDefault();
+    if (!id) return;
+    router.push(`/certs?id=${encodeURIComponent(id)}`);
   };
 
   return (
@@ -82,10 +97,20 @@ export default function Home() {
             <article>
               {academyList.map(obj => (
                 <div className={styles.acaObj} key={obj.id}>
-                  <p className={styles.imgWrap}><img src={obj.image} alt={obj.name} /></p>
+                  <p
+                    className={styles.imgWrap}
+                    onClick={e => handleAcaClick(e, obj.id)}
+                  >
+                    <img src={obj.image} alt={obj.name} />
+                  </p>
                   <div className={styles.detail}>
                     <p className={styles.category}>{obj.category}</p>
-                    <p className={styles.name}>{obj.name}</p>
+                    <p
+                      className={styles.name}
+                      onClick={e => handleAcaClick(e, obj.id)}
+                    >
+                      {obj.name}
+                    </p>
                     <div className={styles.address}>
                       <p><img src='/icons/ic-map.svg' alt="맵아이콘" /></p>
                       <p>{obj.address ? obj.address : '정보 없음'}</p>
@@ -120,13 +145,23 @@ export default function Home() {
               {certList.map(obj => (
                 <div className={styles.certObj} key={obj.id}>
                   <div className={styles.top}>
-                    <p className={styles.imgWrap}><img src='/icons/ic-certificate(small).svg' alt="자격증아이콘" /></p>
+                    <p
+                      className={styles.imgWrap}
+                      onClick={e => handleCertClick(e, obj.id)}
+                    >
+                      <img src='/icons/ic-certificate(small).svg' alt="자격증아이콘" />
+                    </p>
                     <div>
                       <p className={styles.imgWrap}><img src='/icons/ic-heart-1.svg' alt="하트아이콘" /></p>
                       <p>0</p>
                     </div>
                   </div>
-                  <p className={styles.name}>{obj.name}</p>
+                  <p
+                    className={styles.name}
+                    onClick={e => handleCertClick(e, obj.id)}
+                  >
+                    {obj.name}
+                  </p>
                   <div className={styles.text}>
                     <p className={styles.t}>난이도</p>
                     <p className={levelFunc(obj.level)}>{obj.level ? obj.level : ''}</p>

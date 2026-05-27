@@ -3,10 +3,17 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useAuthStore } from '@/app/stores/authStore';
 
 export default function Header() {
   const [query, setQuery] = useState('');
   const router = useRouter();
+  const { user, logout } = useAuthStore();
+
+  const handleLogout = () => {
+    logout();
+    router.push('/');
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,7 +34,10 @@ export default function Header() {
           />
           <button className='searchBtn'><img src='/icons/ic-search.svg' alt="검색아이콘" /></button>
         </form>
-        <Link className='loginBtn' href='/login'>로그인</Link>
+        {user
+          ? <button className='loginBtn' onClick={handleLogout}>로그아웃</button>
+          : <Link className='loginBtn' href='/login'>로그인</Link>
+        }
       </div>
     </header>
   )
