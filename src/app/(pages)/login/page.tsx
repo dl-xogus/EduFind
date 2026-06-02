@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { ReactElement, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import styles from './login.module.scss'
@@ -14,8 +14,9 @@ export default function Login() {
     if (user) router.replace('/')
   }, [user])
 
-  const handleLogin = (email: string, password: string) => {
-    console.log('이메일: 'email, '비밀번호: 'password);
+  const handleLogin = (e: React.FormEvent, email: string, password: string) => {
+    e.preventDefault();
+    console.log(`이메일: ${email}`, `비밀번호: ${password}`);
     
     login(email, password);
     router.push('/');
@@ -23,6 +24,7 @@ export default function Login() {
 
   const [email, setEmail] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <div className={styles.login}>
@@ -32,7 +34,7 @@ export default function Login() {
         <p className={styles.text}>찜 목록 이용을 위해 로그인하세요</p>
       </div>
 
-      <form onSubmit={() => handleLogin(email, password)}>
+      <form onSubmit={(e) => handleLogin(e, email, password)}>
         <div className={styles.inputs}>
           <div className={styles.inp}>
             <p>이메일</p>
@@ -45,11 +47,16 @@ export default function Login() {
 
           <div className={styles.inp}>
             <p>비밀번호</p>
-            <input
-              type="password"
-              placeholder='비밀번호를 입력하세요'
-              onChange={(e) => setPassword((e.target.value).trim())}
-            />
+            <div className={styles.passwordWrap}>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                placeholder='비밀번호를 입력하세요'
+                onChange={(e) => setPassword((e.target.value).trim())}
+              />
+              <p className={styles.eyeBtn} onClick={() => setShowPassword(v => !v)}>
+                <img src={showPassword ? '/icons/ic-hide.svg' : '/icons/ic-show.svg'} alt="비밀번호 숨김/보기" />
+              </p>
+            </div>
           </div>
         </div>
 

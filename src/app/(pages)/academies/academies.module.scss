@@ -131,6 +131,11 @@
                 box-shadow: 0 3px 4px 0 rgba($color: #000000, $alpha: 0.25);
                 padding: 15px;
                 border-radius: 15px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #F8F9FA;
+                }
 
                 .imgWrap {
                     background-color: #B5D4F4;
@@ -149,12 +154,7 @@
                     .name {
                         padding-bottom: 15px;
                         font-size: 20px;
-                        font-weight: 500;
-                        cursor: pointer;
-
-                        &:hover {
-                            text-decoration: underline;
-                        }
+                        font-weight: 600;
                     }
 
                     .text {
@@ -186,27 +186,6 @@
                             font-size: 14px;
                             font-weight: 500;
                         }
-                    }
-                }
-
-                .btn {
-                    width: 30px;
-                    height: 30px;
-                    aspect-ratio: 1 / 1;
-                    border-radius: 999px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    cursor: pointer;
-
-                    &:hover {
-                        background-color: #eeeeee;
-                    }
-
-                    img {
-                        width: 17px;
-                        height: 17px;
-                        aspect-ratio: 1 / 1;
                     }
                 }
             }

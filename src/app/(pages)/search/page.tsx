@@ -1,12 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import { DropdownKey } from '@/app/types/Search'
+import { Academy, Cert } from '@/app/types/Main'
 
-import AcaData from '@/app/data/academies.json'
-import CertData from '@/app/data/certs.json'
 import styles from './Search.module.scss'
 
 export default function Search() {
@@ -42,10 +41,18 @@ export default function Search() {
   const tabLabel = (key: DropdownKey, defaultLabel: string) =>
     selected[key] ?? defaultLabel;
 
+  const [acaData, setAcaData] = useState<Academy[]>([]);
+  const [certData, setCertData] = useState<Cert[]>([]);
+
+  useEffect(() => {
+    fetch('/api/academies').then(r => r.json()).then(d => setAcaData(d.academies ?? []));
+    fetch('/api/certs').then(r => r.json()).then(d => setCertData(d.certs ?? []));
+  }, []);
+
   const searchParams = useSearchParams();
   const value: string | null = searchParams.get('value');
 
-  const filteredAcaList = AcaData.filter(a => {
+  const filteredAcaList = acaData.filter(a => {
     const query = value ?? '';
     const matchesSearch = a.name.includes(query) || a.subjects.some(s => s.includes(query));
     const matchesRegion = !selected.region || a.region.includes(selected.region);
@@ -62,7 +69,7 @@ export default function Search() {
 
 
 
-  const filteredCertList = CertData.filter(c => c.name.includes(value ?? ''));
+  const filteredCertList = certData.filter(c => c.name.includes(value ?? ''));
 
   const [activeTab, setActiveTab] = useState<'aca' | 'cert'>('aca');
 

@@ -1,9 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-import academies from '@/app/data/academies.json'
-import certs from '@/app/data/certs.json'
+import WishButton from '@/app/components/WishButton'
 import { Academy, Cert } from '@/app/types/Main'
 
 import styles from "./page.module.scss";
@@ -20,14 +19,21 @@ const TABS = [
 ];
 
 export default function Home() {
-  const [selectedCategory, setSelectedCategory] = useState<string>('전체');   // 선택한 카테고리
+  const [selectedCategory, setSelectedCategory] = useState<string>('전체');
+  const [academies, setAcademies] = useState<Academy[]>([]);
+  const [certs, setCerts] = useState<Cert[]>([]);
 
-  const academyList: Academy[] = (academies as Academy[])
-    .filter(a => selectedCategory === '전체' || a.category === selectedCategory)    // 선택한 카테고리로 필터링
+  useEffect(() => {
+    fetch('/api/academies').then(r => r.json()).then(d => setAcademies(d.academies ?? []));
+    fetch('/api/certs').then(r => r.json()).then(d => setCerts(d.certs ?? []));
+  }, []);
+
+  const academyList = academies
+    .filter(a => selectedCategory === '전체' || a.category === selectedCategory)
     .slice(0, 6);
 
-  const certList: Cert[] = (certs as Cert[])
-    .filter(c => selectedCategory === '전체' || c.category === selectedCategory)    // 선택한 카테고리로 필터링
+  const certList = certs
+    .filter(c => selectedCategory === '전체' || c.category === selectedCategory)
     .slice(0, 6);
 
   const levelFunc = (level: string) => {
@@ -118,8 +124,7 @@ export default function Home() {
                     <div className={styles.priceHeart}>
                       <p className={styles.price}>{obj.fee === 0 ? '무료' : `${Number(obj.fee).toLocaleString()}원`}</p>
                       <div className={styles.heart}>
-                        <p className={styles.imgWrap}><img src='/icons/ic-heart-1.svg' alt="하트아이콘" /></p>
-                        <p>0</p>
+                        <WishButton itemId={obj.id} itemType="academy" className={styles.imgWrap} />
                       </div>
                     </div>
                   </div>
@@ -152,8 +157,7 @@ export default function Home() {
                       <img src='/icons/ic-certificate(small).svg' alt="자격증아이콘" />
                     </p>
                     <div>
-                      <p className={styles.imgWrap}><img src='/icons/ic-heart-1.svg' alt="하트아이콘" /></p>
-                      <p>0</p>
+                      <WishButton itemId={obj.id} itemType="cert" className={styles.imgWrap} />
                     </div>
                   </div>
                   <p

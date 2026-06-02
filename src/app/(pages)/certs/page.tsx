@@ -1,18 +1,34 @@
 'use client'
 
+import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import AcaData from '@/app/data/academies.json'
-import CertData from '@/app/data/certs.json'
+import { Academy, Cert } from '@/app/types/Main';
 import styles from './certs.module.scss'
-import { useState } from 'react';
+import WishButton from '@/app/components/WishButton'
 
 export default function Certs() {
-  /* 자격증, 학원 데이터 필터링 */
   const searchParams = useSearchParams();
   const id: string | null = searchParams.get('id');
 
-  const cert = CertData.find(c => c.id === Number(id));
-  const aca = AcaData.filter(c => cert?.academyIds.includes(c.id));
+  const [cert, setCert] = useState<Cert | null>(null);
+  const [aca, setAca] = useState<Academy[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!id) return;
+    fetch(`/api/certs?id=${id}`)
+      .then(r => r.json())
+      .then(async d => {
+        const c: Cert = d.cert;
+        setCert(c);
+        if (c?.academyIds?.length) {
+          const res = await fetch('/api/academies');
+          const ad = await res.json();
+          setAca((ad.academies as Academy[]).filter(a => c.academyIds.includes(a.id)));
+        }
+      })
+      .finally(() => setLoading(false));
+  }, [id]);
 
   /* 난이도별 클래스 따로 지정 */
   const levelFunc = (level: string) => {
@@ -45,12 +61,8 @@ export default function Certs() {
     router.push(`/certs?id=${encodeURIComponent(id)}`);
   };
 
-  /* cert가 없을 경우 */
-  if (!cert) return (
-    <div className={styles.certs}>
-      <p className={styles.undefined}>자격증을 찾을 수 없습니다.</p>
-    </div>
-  )
+  if (loading) return <div className={styles.certs}><p className={styles.undefined}>불러오는 중...</p></div>
+  if (!cert) return <div className={styles.certs}><p className={styles.undefined}>자격증을 찾을 수 없습니다.</p></div>
 
   return (
     <div className={styles.certs}>
@@ -67,7 +79,7 @@ export default function Certs() {
 
           <div className={styles.title}>
             <p className={styles.name}>{cert.name}</p>
-            <p className={styles.imgWrap}><img src="/icons/ic-heart-1.svg" alt="하트아이콘" /></p>
+            <WishButton itemId={cert.id} itemType="cert" className={styles.imgWrap} />
           </div>
 
           <p className={styles.issuer}>주관 : {cert.issuer}</p>
@@ -157,7 +169,7 @@ export default function Certs() {
       <div className={`${styles.intro} ${styles.last}`}>
         <h3>관련 학원</h3>
         {aca.map(a => (
-          <div key={a.id} className={styles.aca}>
+          <div key={a.id} className={styles.aca} onClick={e => handleAcaClick(e, a.id)}>
             <p
               className={styles.acaImg}
               onClick={e => handleAcaClick(e, a.id)}
@@ -165,24 +177,13 @@ export default function Certs() {
               <img src={a.image} alt="학원이미지" />
             </p>
             <div className={styles.mid}>
-              <p
-                className={styles.name}
-                onClick={e => handleAcaClick(e, a.id)}
-              >
-                {a.name}
-              </p>
+              <p className={styles.name}>{a.name}</p>
               <div className={styles.tag}>
                 <p>{a.region}</p>
                 <p><img src="/icons/ic-dot.svg" alt="dot" /></p>
                 <p>{a.fee == 0 ? '무료' : `${Number(a.fee).toLocaleString()}원`}</p>
               </div>
             </div>
-            <p
-              className={styles.rightIcon}
-              onClick={e => handleAcaClick(e, a.id)}
-            >
-              <img src="/icons/ic-right.svg" alt="right" />
-            </p>
           </div>
         ))}
       </div>

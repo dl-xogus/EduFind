@@ -1,14 +1,18 @@
 export interface Academy {
-    id: number; 
+    id: number;
     name: string;
-    region: string; 
+    region: string;
     address: string;
     category: string;
     subjects: string[];
     fee: number;
     description: string;
     tags: string[];
+    certIds: number[];
     image: string;
+    openTime: string;
+    phone: string;
+    wishCount: number;
 }
 
 export interface ExamSchedule {

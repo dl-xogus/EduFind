@@ -49,6 +49,8 @@ export default function Signup() {
     }
   }
 
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <div className={styles.login}>
       <div className={styles.top}>
@@ -85,20 +87,25 @@ export default function Signup() {
 
           <div className={styles.inp}>
             <p>비밀번호</p>
-            <input
-              type="password"
-              name="password"
-              value={form.password}
-              onChange={handleChange}
-              placeholder='영문 대문자, 숫자 포함 8자 이상'
-            />
+            <div className={styles.passwordWrap}>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                value={form.password}
+                onChange={handleChange}
+                placeholder='영문 대문자, 숫자 포함 8자 이상'
+              />
+              <p className={styles.eyeBtn} onClick={() => setShowPassword(v => !v)}>
+                <img src={showPassword ? '/icons/ic-hide.svg' : '/icons/ic-show.svg'} alt="비밀번호 숨김/보기" />
+              </p>
+            </div>
             {errors.password && <p className={styles.error}>{errors.password}</p>}
           </div>
 
           <div className={styles.inp}>
             <p>비밀번호 확인</p>
             <input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               name="passwordConfirm"
               value={form.passwordConfirm}
               onChange={handleChange}
