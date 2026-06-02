@@ -1,12 +1,16 @@
 'use client'
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Academy, Cert } from '@/app/types/Main';
 import styles from './academies.module.scss'
 import WishButton from '@/app/components/WishButton'
 
 export default function Academies() {
+  return <Suspense><AcademiesInner /></Suspense>
+}
+
+function AcademiesInner() {
   const searchParams = useSearchParams();
   const id: string | null = searchParams.get('id');
 

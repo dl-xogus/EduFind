@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import { DropdownKey } from '@/app/types/Search'
@@ -9,6 +9,10 @@ import { Academy, Cert } from '@/app/types/Main'
 import styles from './Search.module.scss'
 
 export default function Search() {
+  return <Suspense><SearchInner /></Suspense>
+}
+
+function SearchInner() {
   const REGIONS = ['서울', '경기', '부산', '대구', '인천'];
   const CATEGORIES = ['IT', '어학', '금융', '기술', '디자인', '공무원'];
   const FEES = ['무료', '20만원 이하', '20 ~ 40만원', '40만원 이상'];

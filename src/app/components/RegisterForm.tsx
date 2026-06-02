@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useAuthStore } from '@/app/stores/authStore'
 import { validateRegisterForm } from '@/app/utils/validate'
-import { RegisterForm, FormErrors } from '@/app/types/auth'
+import type { RegisterForm, FormErrors } from '@/app/types/auth'
 
 export default function RegisterForm() {
   const register = useAuthStore((s) => s.register)
