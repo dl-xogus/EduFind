@@ -1,10 +1,10 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 
-import WishButton from '@/app/components/WishButton'
-import { useAcademyStore } from '@/app/stores/academyStore'
-import { useCertStore } from '@/app/stores/certStore'
+import WishButton from '@/components/WishButton'
+import { useAcademyStore } from '@/stores/academyStore'
+import { useCertStore } from '@/stores/certStore'
 
 import styles from "./page.module.scss";
 import { useRouter } from 'next/navigation'

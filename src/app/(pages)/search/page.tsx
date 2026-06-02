@@ -1,11 +1,11 @@
-'use client'
+﻿'use client'
 
 import { Suspense, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/navigation'
-import { DropdownKey } from '@/app/types/Search'
-import { useAcademyStore } from '@/app/stores/academyStore'
-import { useCertStore } from '@/app/stores/certStore'
+import { DropdownKey } from '@/types/Search'
+import { useAcademyStore } from '@/stores/academyStore'
+import { useCertStore } from '@/stores/certStore'
 
 import styles from './Search.module.scss'
 

@@ -1,9 +1,9 @@
-'use client'
+﻿'use client'
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useAuthStore } from '@/app/stores/authStore';
+import { useAuthStore } from '@/stores/authStore';
 
 export default function Header() {
   const [query, setQuery] = useState('');

@@ -1,10 +1,10 @@
-'use client'
+﻿'use client'
 
 import { ReactElement, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import styles from './login.module.scss'
-import { useAuthStore } from '@/app/stores/authStore'
+import { useAuthStore } from '@/stores/authStore'
 
 export default function Login() {
   const router = useRouter()

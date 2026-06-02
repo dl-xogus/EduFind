@@ -1,7 +1,7 @@
-import type { Metadata } from "next";
-import Header from '@/app/components/Header'
-import Footer from '@/app/components/Footer'
-import DataInitializer from '@/app/components/DataInitializer'
+﻿import type { Metadata } from "next";
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import DataInitializer from '@/components/DataInitializer'
 import "./globals.scss";
 
 export const metadata: Metadata = {

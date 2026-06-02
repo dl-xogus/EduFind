@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { connectDB } from '@/app/lib/mongodb'
-import Academy from '@/app/models/Academy'
+﻿import { NextRequest, NextResponse } from 'next/server'
+import { connectDB } from '@/lib/mongodb'
+import Academy from '@/models/Academy'
 
 export async function GET(req: NextRequest) {
   await connectDB()

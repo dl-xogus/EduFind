@@ -1,12 +1,12 @@
-'use client'
+﻿'use client'
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuthStore } from '@/app/stores/authStore';
-import { useWishlistStore } from '@/app/stores/wishlistStore';
-import { useAcademyStore } from '@/app/stores/academyStore';
-import { useCertStore } from '@/app/stores/certStore';
-import WishButton from '@/app/components/WishButton';
+import { useAuthStore } from '@/stores/authStore';
+import { useWishlistStore } from '@/stores/wishlistStore';
+import { useAcademyStore } from '@/stores/academyStore';
+import { useCertStore } from '@/stores/certStore';
+import WishButton from '@/components/WishButton';
 import styles from './wishlist.module.scss'
 
 export default function Wishlist() {

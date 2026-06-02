@@ -1,12 +1,12 @@
-'use client'
+﻿'use client'
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import styles from '@/app/(pages)/login/login.module.scss'
-import { useAuthStore } from '@/app/stores/authStore'
-import { RegisterForm, FormErrors } from '@/app/types/auth'
-import { validateRegisterForm } from '@/app/utils/validate'
+import { useAuthStore } from '@/stores/authStore'
+import { RegisterForm, FormErrors } from '@/types/auth'
+import { validateRegisterForm } from '@/utils/validate'
 
 export default function Signup() {
   const router = useRouter()

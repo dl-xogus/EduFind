@@ -1,12 +1,12 @@
-'use client'
+﻿'use client'
 
 import { Suspense, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useAcademyStore } from '@/app/stores/academyStore';
-import { useCertStore } from '@/app/stores/certStore';
-import { Academy, Cert } from '@/app/types/Main';
+import { useAcademyStore } from '@/stores/academyStore';
+import { useCertStore } from '@/stores/certStore';
+import { Academy, Cert } from '@/types/Main';
 import styles from './certs.module.scss'
-import WishButton from '@/app/components/WishButton'
+import WishButton from '@/components/WishButton'
 
 export default function Certs() {
   return <Suspense><CertsInner /></Suspense>

@@ -1,6 +1,6 @@
-import { create } from 'zustand'
+﻿import { create } from 'zustand'
 import axios from 'axios'
-import { Academy } from '@/app/types/Main'
+import { Academy } from '@/types/Main'
 
 interface AcademyStore {
   academies: Academy[]

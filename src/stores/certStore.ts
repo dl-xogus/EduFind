@@ -1,6 +1,6 @@
-import { create } from 'zustand'
+﻿import { create } from 'zustand'
 import axios from 'axios'
-import { Cert } from '@/app/types/Main'
+import { Cert } from '@/types/Main'
 
 interface CertStore {
   certs: Cert[]

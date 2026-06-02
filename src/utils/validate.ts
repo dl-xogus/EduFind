@@ -1,10 +1,10 @@
-// =============================================
+﻿// =============================================
 // utils/validate.ts
 // 유효성 검사 로직을 한 곳에 모아둔 파일
 // 프론트(컴포넌트, Zustand)와 백엔드(API Route) 양쪽에서 재사용
 // =============================================
 
-import { RegisterForm, FormErrors } from '@/app/types/auth'
+import { RegisterForm, FormErrors } from '@/types/auth'
 
 /**
  * 회원가입 폼 전체 유효성 검사

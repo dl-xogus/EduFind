@@ -1,4 +1,4 @@
-// =============================================
+﻿// =============================================
 // stores/authStore.ts
 // 로그인 상태를 전역으로 관리하는 Zustand 스토어
 // persist 미들웨어로 localStorage에 세션 유지
@@ -7,8 +7,8 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import axios from 'axios'
-import { validateRegisterForm, isFormValid } from '@/app/utils/validate'
-import { RegisterForm, User } from '@/app/types/auth'
+import { validateRegisterForm, isFormValid } from '@/utils/validate'
+import { RegisterForm, User } from '@/types/auth'
 
 interface AuthStore {
   user: User | null        // 로그인한 유저 정보 (null이면 비로그인)

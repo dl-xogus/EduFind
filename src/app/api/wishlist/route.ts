@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { connectDB } from '@/app/lib/mongodb'
-import Wishlist from '@/app/models/Wishlist'
+﻿import { NextRequest, NextResponse } from 'next/server'
+import { connectDB } from '@/lib/mongodb'
+import Wishlist from '@/models/Wishlist'
 
 // GET /api/wishlist?email=...
 export async function GET(req: NextRequest) {

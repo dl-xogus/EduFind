@@ -1,4 +1,4 @@
-// =============================================
+﻿// =============================================
 // app/api/auth/register/route.ts
 // 회원가입 API Route
 // POST /api/auth/register
@@ -6,9 +6,9 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import bcrypt from 'bcryptjs'
-import { connectDB } from '@/app/lib/mongodb'
-import User from '@/app/models/User'
-import { validateRegisterForm, isFormValid } from '@/app/utils/validate'
+import { connectDB } from '@/lib/mongodb'
+import User from '@/models/User'
+import { validateRegisterForm, isFormValid } from '@/utils/validate'
 
 export async function POST(req: NextRequest) {
   const body = await req.json()

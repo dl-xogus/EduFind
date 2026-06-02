@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { connectDB } from '@/app/lib/mongodb'
-import Cert from '@/app/models/Cert'
+﻿import { NextRequest, NextResponse } from 'next/server'
+import { connectDB } from '@/lib/mongodb'
+import Cert from '@/models/Cert'
 
 export async function GET(req: NextRequest) {
   await connectDB()

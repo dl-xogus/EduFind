@@ -1,8 +1,8 @@
-'use client'
+﻿'use client'
 
 import { useEffect } from 'react'
-import { useAcademyStore } from '@/app/stores/academyStore'
-import { useCertStore } from '@/app/stores/certStore'
+import { useAcademyStore } from '@/stores/academyStore'
+import { useCertStore } from '@/stores/certStore'
 
 export default function DataInitializer() {
   const fetchAcademies = useAcademyStore(s => s.fetchAcademies)

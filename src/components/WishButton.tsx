@@ -1,9 +1,9 @@
-'use client'
+﻿'use client'
 
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { useAuthStore } from '@/app/stores/authStore'
-import { useWishlistStore } from '@/app/stores/wishlistStore'
+import { useAuthStore } from '@/stores/authStore'
+import { useWishlistStore } from '@/stores/wishlistStore'
 
 interface Props {
   itemId: number
