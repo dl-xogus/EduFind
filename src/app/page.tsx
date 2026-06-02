@@ -90,10 +90,6 @@ export default function Home() {
           <section className={styles.objSection}>
             <div className={styles.title}>
               <h2>학원</h2>
-              <div>
-                <p>전체보기</p>
-                <p className={styles.imgWrap}><img src='/icons/ic-right(blue).svg' alt="right" /></p>
-              </div>
             </div>
 
             <article>
@@ -136,10 +132,6 @@ export default function Home() {
           <section className={styles.objSection} style={{ paddingTop: '40px' }}>
             <div className={styles.title}>
               <h2>자격증</h2>
-              <div>
-                <p>전체보기</p>
-                <p className={styles.imgWrap}><img src='/icons/ic-right(blue).svg' alt="right" /></p>
-              </div>
             </div>
 
             <article>

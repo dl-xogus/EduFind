@@ -1,10 +1,10 @@
 .login {
     width: 400px;
-    height: 550px;
+    min-height: 550px;
     padding: 20px;
     margin: 0 auto;
     margin-top: 150px;
-    border: 1px solid #DEE2E6;
+    // border: 1px solid #DEE2E6;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -92,9 +92,9 @@
 
         .error {
             color: #E53E3E;
-            font-size: 12px;
-            padding-top: 4px;
-            padding-left: 10px;
+            font-size: 12px !important;
+            padding: 5px;
+            text-align: center;
         }
 
         button {
@@ -106,6 +106,10 @@
             padding: 15px 0;
             margin-bottom: 10px;
             cursor: pointer;
+
+            &.btnLogin {
+                width: 100%;
+            }
         }
     }
 

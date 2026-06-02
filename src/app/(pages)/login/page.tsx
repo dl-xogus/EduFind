@@ -14,17 +14,22 @@ export default function Login() {
     if (user) router.replace('/')
   }, [user])
 
-  const handleLogin = (e: React.FormEvent, email: string, password: string) => {
+  const handleLogin = async (e: React.FormEvent, email: string, password: string) => {
     e.preventDefault();
-    console.log(`이메일: ${email}`, `비밀번호: ${password}`);
+    setServerError('');
     
-    login(email, password);
-    router.push('/');
+    const result = await login(email, password);
+    if (result.success) {
+      router.push('/');
+    } else {
+      setServerError(result.message ?? '오류가 발생했어요');
+    }
   };
 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [showPassword, setShowPassword] = useState(false);
+  const [serverError, setServerError] = useState('')
 
   return (
     <div className={styles.login}>
@@ -60,7 +65,10 @@ export default function Login() {
           </div>
         </div>
 
-        <button>로그인</button>
+        <div>
+          {serverError && <p className={styles.error}>{serverError}</p>}
+          <button className={styles.btnLogin}>로그인</button>
+        </div>
       </form>
 
       <div className={styles.msg}>계정이 없으신가요?<Link className={styles.botBtn} href="/signup">회원가입</Link></div>
