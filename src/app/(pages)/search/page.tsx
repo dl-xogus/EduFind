@@ -1,10 +1,11 @@
 'use client'
 
-import { Suspense, useEffect, useState } from 'react'
+import { Suspense, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import { DropdownKey } from '@/app/types/Search'
-import { Academy, Cert } from '@/app/types/Main'
+import { useAcademyStore } from '@/app/stores/academyStore'
+import { useCertStore } from '@/app/stores/certStore'
 
 import styles from './Search.module.scss'
 
@@ -45,13 +46,8 @@ function SearchInner() {
   const tabLabel = (key: DropdownKey, defaultLabel: string) =>
     selected[key] ?? defaultLabel;
 
-  const [acaData, setAcaData] = useState<Academy[]>([]);
-  const [certData, setCertData] = useState<Cert[]>([]);
-
-  useEffect(() => {
-    fetch('/api/academies').then(r => r.json()).then(d => setAcaData(d.academies ?? []));
-    fetch('/api/certs').then(r => r.json()).then(d => setCertData(d.certs ?? []));
-  }, []);
+  const acaData = useAcademyStore(s => s.academies);
+  const certData = useCertStore(s => s.certs);
 
   const searchParams = useSearchParams();
   const value: string | null = searchParams.get('value');

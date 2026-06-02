@@ -1,9 +1,10 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import WishButton from '@/app/components/WishButton'
-import { Academy, Cert } from '@/app/types/Main'
+import { useAcademyStore } from '@/app/stores/academyStore'
+import { useCertStore } from '@/app/stores/certStore'
 
 import styles from "./page.module.scss";
 import { useRouter } from 'next/navigation'
@@ -20,13 +21,8 @@ const TABS = [
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState<string>('전체');
-  const [academies, setAcademies] = useState<Academy[]>([]);
-  const [certs, setCerts] = useState<Cert[]>([]);
-
-  useEffect(() => {
-    fetch('/api/academies').then(r => r.json()).then(d => setAcademies(d.academies ?? []));
-    fetch('/api/certs').then(r => r.json()).then(d => setCerts(d.certs ?? []));
-  }, []);
+  const academies = useAcademyStore(s => s.academies);
+  const certs = useCertStore(s => s.certs);
 
   const academyList = academies
     .filter(a => selectedCategory === '전체' || a.category === selectedCategory)

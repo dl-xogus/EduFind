@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Header from '@/app/components/Header'
 import Footer from '@/app/components/Footer'
+import DataInitializer from '@/app/components/DataInitializer'
 import "./globals.scss";
 
 export const metadata: Metadata = {
@@ -16,6 +17,7 @@ export default function RootLayout({
   return (
     <html lang="kr">
       <body>
+        <DataInitializer />
         <Header />
         <main>{children}</main>
         <Footer />

@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/app/stores/authStore';
 import { useWishlistStore } from '@/app/stores/wishlistStore';
-import { Academy, Cert } from '@/app/types/Main';
+import { useAcademyStore } from '@/app/stores/academyStore';
+import { useCertStore } from '@/app/stores/certStore';
 import WishButton from '@/app/components/WishButton';
 import styles from './wishlist.module.scss'
 
@@ -12,15 +13,13 @@ export default function Wishlist() {
   const router = useRouter();
   const { user } = useAuthStore();
   const { items, fetchWishlist } = useWishlistStore();
+  const allAcademies = useAcademyStore(s => s.academies);
+  const allCerts = useCertStore(s => s.certs);
   const [activeTab, setActiveTab] = useState<'all' | 'aca' | 'cert'>('all');
-  const [allAcademies, setAllAcademies] = useState<Academy[]>([]);
-  const [allCerts, setAllCerts] = useState<Cert[]>([]);
 
   useEffect(() => {
     if (!user) { router.replace('/login'); return; }
     fetchWishlist(user.email);
-    fetch('/api/academies').then(r => r.json()).then(d => setAllAcademies(d.academies ?? []));
-    fetch('/api/certs').then(r => r.json()).then(d => setAllCerts(d.certs ?? []));
   }, [user]);
 
   const wishedAcademies = allAcademies.filter(a => items.some(i => i.itemType === 'academy' && i.itemId === a.id));

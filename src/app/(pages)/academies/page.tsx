@@ -2,6 +2,8 @@
 
 import { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useAcademyStore } from '@/app/stores/academyStore';
+import { useCertStore } from '@/app/stores/certStore';
 import { Academy, Cert } from '@/app/types/Main';
 import styles from './academies.module.scss'
 import WishButton from '@/app/components/WishButton'
@@ -14,25 +16,12 @@ function AcademiesInner() {
   const searchParams = useSearchParams();
   const id: string | null = searchParams.get('id');
 
-  const [acaDetail, setAcaDetail] = useState<Academy | null>(null);
-  const [cert, setCert] = useState<Cert[]>([]);
-  const [loading, setLoading] = useState(true);
+  const allAcademies = useAcademyStore(s => s.academies);
+  const allCerts = useCertStore(s => s.certs);
 
-  useEffect(() => {
-    if (!id) return;
-    fetch(`/api/academies?id=${id}`)
-      .then(r => r.json())
-      .then(async d => {
-        const aca: Academy = d.academy;
-        setAcaDetail(aca);
-        if (aca?.certIds?.length) {
-          const res = await fetch('/api/certs');
-          const cd = await res.json();
-          setCert((cd.certs as Cert[]).filter(c => aca.certIds.includes(c.id)));
-        }
-      })
-      .finally(() => setLoading(false));
-  }, [id]);
+  const acaDetail = allAcademies.find(a => a.id === Number(id)) ?? null;
+  const cert = acaDetail ? allCerts.filter(c => acaDetail.certIds.includes(c.id)) : [];
+  const loading = allAcademies.length === 0;
 
   const levelFunc = (level: string) => {
     switch (level) {
