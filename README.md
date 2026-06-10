@@ -1,4 +1,4 @@
-<img scr="./imgs/img-portfolio.jpg" alt="썸네일" />
+<img scr="./imgs/img-EduFind.jpg" alt="썸네일" />
 
 # 🎓 EduFind
 학원 · 자격증 통합 검색 플랫폼  
