@@ -1,22 +1,32 @@
 ﻿import { NextRequest, NextResponse } from 'next/server'
+import { cookies } from 'next/headers'
 import { connectDB } from '@/lib/mongodb'
 import Wishlist from '@/models/Wishlist'
 
-// GET /api/wishlist?email=...
-export async function GET(req: NextRequest) {
-  const email = req.nextUrl.searchParams.get('email')
-  if (!email) return NextResponse.json({ error: '이메일이 필요합니다' }, { status: 400 })
+const UNAUTHORIZED = NextResponse.json({ error: '로그인이 필요합니다' }, { status: 401 })
+
+async function getEmailFromCookie(): Promise<string | null> {
+  const cookieStore = await cookies()
+  return cookieStore.get('user_email')?.value ?? null
+}
+
+// GET /api/wishlist
+export async function GET() {
+  const email = await getEmailFromCookie()
+  if (!email) return UNAUTHORIZED
 
   await connectDB()
   const items = await Wishlist.find({ userEmail: email }).lean()
   return NextResponse.json({ items })
 }
 
-// POST /api/wishlist  { email, itemId, itemType }
-// 이미 찜한 항목이면 삭제(토글), 없으면 추가
+// POST /api/wishlist  { itemId, itemType }
 export async function POST(req: NextRequest) {
-  const { email, itemId, itemType } = await req.json()
-  if (!email || !itemId || !itemType) {
+  const email = await getEmailFromCookie()
+  if (!email) return UNAUTHORIZED
+
+  const { itemId, itemType } = await req.json()
+  if (!itemId || !itemType) {
     return NextResponse.json({ error: '필수 값이 누락되었습니다' }, { status: 400 })
   }
 

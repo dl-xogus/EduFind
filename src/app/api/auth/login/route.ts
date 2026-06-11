@@ -1,11 +1,6 @@
-﻿// =============================================
-// app/api/auth/login/route.ts
-// 로그인 API Route
-// POST /api/auth/login
-// =============================================
-
-import { NextRequest, NextResponse } from 'next/server'
+﻿import { NextRequest, NextResponse } from 'next/server'
 import bcrypt from 'bcryptjs'
+import { cookies } from 'next/headers'
 import { connectDB } from '@/lib/mongodb'
 import User from '@/models/User'
 
@@ -45,7 +40,14 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  // 로그인 성공 → 비밀번호 제외하고 유저 정보 반환
+  // 로그인 성공 → HTTP-only 쿠키 발급 후 유저 정보 반환
+  const cookieStore = await cookies()
+  cookieStore.set('user_email', user.email, {
+    httpOnly: true,
+    path: '/',
+    maxAge: 60 * 60 * 24 * 7, // 7일
+  })
+
   return NextResponse.json({
     user: { name: user.name, email: user.email }
   })

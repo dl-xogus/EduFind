@@ -19,7 +19,7 @@ export default function Wishlist() {
 
   useEffect(() => {
     if (!user) { router.replace('/login'); return; }
-    fetchWishlist(user.email);
+    fetchWishlist();
   }, [user]);
 
   const wishedAcademies = allAcademies.filter(a => items.some(i => i.itemType === 'academy' && i.itemId === a.id));

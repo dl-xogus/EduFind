@@ -1,10 +1,4 @@
-﻿// =============================================
-// stores/authStore.ts
-// 로그인 상태를 전역으로 관리하는 Zustand 스토어
-// persist 미들웨어로 localStorage에 세션 유지
-// =============================================
-
-import { create } from 'zustand'
+﻿import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import axios from 'axios'
 import { validateRegisterForm, isFormValid } from '@/utils/validate'
@@ -15,7 +9,7 @@ interface AuthStore {
   isLoading: boolean       // API 요청 중 여부 (버튼 비활성화 등에 사용)
   register: (form: RegisterForm) => Promise<{ success: boolean; message?: string }>
   login: (email: string, password: string) => Promise<{ success: boolean; message?: string }>
-  logout: () => void
+  logout: () => Promise<void>
 }
 
 export const useAuthStore = create<AuthStore>()(
@@ -75,8 +69,10 @@ export const useAuthStore = create<AuthStore>()(
       },
 
       // ── 로그아웃 ──────────────────────────────
-      // user를 null로 바꾸면 persist가 localStorage도 자동 업데이트
-      logout: () => set({ user: null }),
+      logout: async () => {
+        await axios.post('/api/auth/logout')
+        set({ user: null })
+      },
     }),
     {
       name: 'auth', // localStorage에 저장될 키 이름: "auth"

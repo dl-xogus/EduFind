@@ -1,11 +1,6 @@
-﻿// =============================================
-// app/api/auth/register/route.ts
-// 회원가입 API Route
-// POST /api/auth/register
-// =============================================
-
-import { NextRequest, NextResponse } from 'next/server'
+﻿import { NextRequest, NextResponse } from 'next/server'
 import bcrypt from 'bcryptjs'
+import { cookies } from 'next/headers'
 import { connectDB } from '@/lib/mongodb'
 import User from '@/models/User'
 import { validateRegisterForm, isFormValid } from '@/utils/validate'
@@ -48,7 +43,14 @@ export async function POST(req: NextRequest) {
     password: hashed, // 해싱된 비밀번호만 저장
   })
 
-  // 6단계: 응답 시 비밀번호 제외하고 반환
+  // 6단계: HTTP-only 쿠키 발급 후 비밀번호 제외하고 반환
+  const cookieStore = await cookies()
+  cookieStore.set('user_email', user.email, {
+    httpOnly: true,
+    path: '/',
+    maxAge: 60 * 60 * 24 * 7, // 7일
+  })
+
   return NextResponse.json(
     { user: { name: user.name, email: user.email } },
     { status: 201 } // Created

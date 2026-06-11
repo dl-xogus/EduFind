@@ -17,7 +17,7 @@ export default function WishButton({ itemId, itemType, className }: Props) {
   const { fetchWishlist, toggle, isWished, items } = useWishlistStore()
 
   useEffect(() => {
-    if (user) fetchWishlist(user.email)
+    if (user) fetchWishlist()
   }, [user])
 
   const wished = isWished(itemId, itemType)
@@ -25,7 +25,7 @@ export default function WishButton({ itemId, itemType, className }: Props) {
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation()
     if (!user) return router.push('/login')
-    toggle(user.email, itemId, itemType)
+    toggle(itemId, itemType)
   }
 
   return (
