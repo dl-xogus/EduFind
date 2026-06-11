@@ -19,10 +19,52 @@ const TABS = [
   { label: '공무원', ic_black: '/icons/ic-building.svg', ic_white: '/icons/ic-building(white).svg' },
 ];
 
+function AcademySkeletons() {
+  return (
+    <section className={styles.objSection}>
+      <div className={styles.title}><h2>학원</h2></div>
+      <article>
+        {Array.from({ length: 6 }).map((_, i) => (
+          <div className={styles.skeletonCard} key={i}>
+            <div className={`${styles.skeleton} ${styles.skeletonImg}`} />
+            <div className={styles.skeletonDetail}>
+              <div className={`${styles.skeleton} ${styles.skeletonBadge}`} />
+              <div className={`${styles.skeleton} ${styles.skeletonTitle}`} />
+              <div className={`${styles.skeleton} ${styles.skeletonText}`} />
+              <div className={`${styles.skeleton} ${styles.skeletonPrice}`} />
+            </div>
+          </div>
+        ))}
+      </article>
+    </section>
+  )
+}
+
+function CertSkeletons() {
+  return (
+    <section className={styles.objSection} style={{ paddingTop: '40px' }}>
+      <div className={styles.title}><h2>자격증</h2></div>
+      <article>
+        {Array.from({ length: 6 }).map((_, i) => (
+          <div className={styles.skeletonCertCard} key={i}>
+            <div className={`${styles.skeleton} ${styles.skeletonIcon}`} />
+            <div className={`${styles.skeleton} ${styles.skeletonTitle}`} />
+            <div className={`${styles.skeleton} ${styles.skeletonRow}`} />
+            <div className={`${styles.skeleton} ${styles.skeletonRow}`} />
+            <div className={`${styles.skeleton} ${styles.skeletonRow}`} />
+          </div>
+        ))}
+      </article>
+    </section>
+  )
+}
+
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState<string>('전체');
   const academies = useAcademyStore(s => s.academies);
+  const academyLoading = useAcademyStore(s => s.loading);
   const certs = useCertStore(s => s.certs);
+  const certLoading = useCertStore(s => s.loading);
 
   const academyList = academies
     .filter(a => selectedCategory === '전체' || a.category === selectedCategory)
@@ -85,7 +127,7 @@ export default function Home() {
         ))}
       </section>
 
-      {
+      {academyLoading ? <AcademySkeletons /> :
         academyList.length ?
           <section className={styles.objSection}>
             <div className={styles.title}>
@@ -127,7 +169,7 @@ export default function Home() {
           : ''
       }
 
-      {
+      {certLoading ? <CertSkeletons /> :
         certList.length ?
           <section className={styles.objSection} style={{ paddingTop: '40px' }}>
             <div className={styles.title}>

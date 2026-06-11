@@ -5,16 +5,19 @@ import { Academy } from '@/types/Main'
 interface AcademyStore {
   academies: Academy[]
   fetched: boolean
+  loading: boolean
   fetchAcademies: () => Promise<void>
 }
 
 export const useAcademyStore = create<AcademyStore>((set, get) => ({
   academies: [],
   fetched: false,
+  loading: false,
 
   fetchAcademies: async () => {
     if (get().fetched) return
+    set({ loading: true })
     const { data } = await axios.get('/api/academies')
-    set({ academies: data.academies ?? [], fetched: true })
+    set({ academies: data.academies ?? [], fetched: true, loading: false })
   },
 }))
